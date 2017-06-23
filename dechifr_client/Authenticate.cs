@@ -25,7 +25,7 @@ namespace dechifr_client
 
         /*
          Check if user is in db with password
-             */
+         */
         public bool checkUser(string username,string password)
         {
             msqlCommand.CommandText = "SELECT * FROM `users`;";
@@ -35,15 +35,11 @@ namespace dechifr_client
                 MySqlDataReader msqlReader = msqlCommand.ExecuteReader();
                 while (msqlReader.Read())
                 {
-                    //msqlReader.GetString(0); //user
-                    //msqlReader.GetString(1); //password
-                    //msqlReader.GetString(2); //id
-
-                    if (string.Compare(username, msqlReader.GetString(0)) == 0)
+                    if (string.Compare(username, msqlReader.GetString("user")) == 0)
                     {
                         Console.WriteLine("user found");
 
-                        if (string.Compare(password, msqlReader.GetString(1)) == 0)
+                        if (string.Compare(password, msqlReader.GetString("password")) == 0)
                         {
                             Console.WriteLine("password valid");
                             return true;
@@ -65,7 +61,7 @@ namespace dechifr_client
         /*
          Connect the user and returns a connection token
          adds this token to the session table with the default validity time
-             */
+         */
         public string connect(string username, string password, string appToken)
         {
             if (checkUser(username,password))
@@ -82,7 +78,7 @@ namespace dechifr_client
                 string validityTime = validity.ToString("yyyy-MM-dd HH:mm:ss");
 
                 Console.WriteLine(validityTime);
-                msqlCommand.CommandText = string.Format("INSERT INTO `session`(`user`, `token`, `expires`) VALUES ('{0}','{1}','{2}')", username, password, validityTime);
+                msqlCommand.CommandText = string.Format("INSERT INTO `session`(`id`,`user`, `token`, `expires`) VALUES ('{0}','{1}','{2}')", username, password, validityTime);
                 try
                 {
                     msqlConnection.Open();
@@ -108,7 +104,7 @@ namespace dechifr_client
         /*
          check if users has a valid token
          */
-        public bool checkUserToken(string username)
+        public bool checkUserToken(string username, string token)
         {
             msqlCommand.CommandText = "SELECT * FROM `session`;";
             try
@@ -120,6 +116,8 @@ namespace dechifr_client
                     //if user has token
                     if (string.Compare(username, msqlReader.GetString("user")) == 0)
                     {
+                        Console.WriteLine("user is in token table");
+
                         //check token validity
                         DateTime valid = msqlReader.GetDateTime("expires");
                         if(valid > DateTime.Now)
@@ -144,8 +142,8 @@ namespace dechifr_client
         }
 
         /*
-         Method to convert the input string into a hased byte array
-             */
+        Method to convert the input string into a hased byte array
+        */
         public static byte[] GetHash(string inputString)
         {
             HashAlgorithm algorithm = MD5.Create();  //or use SHA256.Create();
@@ -153,7 +151,7 @@ namespace dechifr_client
         }
 
         /*
-           convert hash array into hased string
+        Convert hash array into hased string
              */
         public static string GetHashString(string inputString)
         {

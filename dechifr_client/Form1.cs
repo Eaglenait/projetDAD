@@ -18,6 +18,9 @@ namespace dechifr_client
         bool TB_password = false;
         bool TB_appToken = false;
 
+        bool TB_fileselected = false;
+        bool TB_connectionTokenEntered = false;
+
         Authenticate t = new Authenticate();
 
         String apptoken = "F5BwBkWzvL1hGT8zHk8bPlw975VHMz";
@@ -29,7 +32,7 @@ namespace dechifr_client
 
         private void buttonGetFile_Click(object sender, EventArgs e)
         {
-            if (t.checkUserToken(textBox_username.Text))
+            if (t.checkUserToken(textBox_username.Text, textbox_connectionToken.Text))
             {
                 OpenFileDialog d = new OpenFileDialog();
                 //only one selected file at once
@@ -41,7 +44,29 @@ namespace dechifr_client
                 {
                     if (d.CheckFileExists)
                     {
-                        String path = d.
+                        label_filePath.Text = d.FileName;
+                        TB_fileselected = true;
+                        String path = d.FileName;
+                        System.IO.StreamReader file = new System.IO.StreamReader(path);
+
+                        string line; int lineCount = 0;
+                        
+                        while ((line = file.ReadLine()) != null)
+                        {
+                            ++lineCount;
+                        }
+
+                        Console.WriteLine(lineCount);
+
+                        List<string> keys = new List<string>(lineCount);
+                        while((line = file.ReadLine()) != null)
+                        {
+                            Console.WriteLine(line);
+                            keys.Add(line);
+                        }
+
+
+                        file.Close();
                     }
                 }
             }
@@ -75,6 +100,9 @@ namespace dechifr_client
                     {
                         Console.WriteLine("Connection successfull");
                         status_label.Text = "connectionToken : " + connectionToken;
+                        textbox_connectionToken.Text = connectionToken;
+                        TB_connectionTokenEntered = false;
+
                     }
                 }
             } else {//if app token is invalid

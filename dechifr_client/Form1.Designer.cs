@@ -39,14 +39,18 @@
             this.textBox_appToken = new System.Windows.Forms.TextBox();
             this.app_token_label = new System.Windows.Forms.Label();
             this.status_label = new System.Windows.Forms.Label();
+            this.textbox_connectionToken = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label_filePath = new System.Windows.Forms.Label();
+            this.btn_sendFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // fileselect_btn
             // 
-            this.fileselect_btn.Location = new System.Drawing.Point(12, 145);
+            this.fileselect_btn.Location = new System.Drawing.Point(15, 179);
             this.fileselect_btn.Name = "fileselect_btn";
-            this.fileselect_btn.Size = new System.Drawing.Size(75, 23);
+            this.fileselect_btn.Size = new System.Drawing.Size(72, 21);
             this.fileselect_btn.TabIndex = 0;
             this.fileselect_btn.Text = "Select File";
             this.fileselect_btn.UseVisualStyleBackColor = true;
@@ -123,11 +127,50 @@
             this.status_label.TabIndex = 8;
             this.status_label.Text = "Please select a file";
             // 
+            // textbox_connectionToken
+            // 
+            this.textbox_connectionToken.Location = new System.Drawing.Point(15, 153);
+            this.textbox_connectionToken.Name = "textbox_connectionToken";
+            this.textbox_connectionToken.Size = new System.Drawing.Size(134, 20);
+            this.textbox_connectionToken.TabIndex = 11;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 137);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 13);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Connection token";
+            // 
+            // label_filePath
+            // 
+            this.label_filePath.AutoSize = true;
+            this.label_filePath.Location = new System.Drawing.Point(93, 183);
+            this.label_filePath.Name = "label_filePath";
+            this.label_filePath.Size = new System.Drawing.Size(85, 13);
+            this.label_filePath.TabIndex = 13;
+            this.label_filePath.Text = "please select file";
+            // 
+            // btn_sendFile
+            // 
+            this.btn_sendFile.Enabled = false;
+            this.btn_sendFile.Location = new System.Drawing.Point(15, 219);
+            this.btn_sendFile.Name = "btn_sendFile";
+            this.btn_sendFile.Size = new System.Drawing.Size(72, 21);
+            this.btn_sendFile.TabIndex = 14;
+            this.btn_sendFile.Text = "Send File";
+            this.btn_sendFile.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 479);
+            this.Controls.Add(this.btn_sendFile);
+            this.Controls.Add(this.label_filePath);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textbox_connectionToken);
             this.Controls.Add(this.status_label);
             this.Controls.Add(this.app_token_label);
             this.Controls.Add(this.textBox_appToken);
@@ -157,6 +200,10 @@
         private System.Windows.Forms.TextBox textBox_appToken;
         private System.Windows.Forms.Label app_token_label;
         private System.Windows.Forms.Label status_label;
+        private System.Windows.Forms.TextBox textbox_connectionToken;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label_filePath;
+        private System.Windows.Forms.Button btn_sendFile;
     }
 }
 
