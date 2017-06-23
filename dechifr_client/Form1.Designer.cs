@@ -74,7 +74,7 @@
             // 
             this.textBox_username.Location = new System.Drawing.Point(75, 6);
             this.textBox_username.Name = "textBox_username";
-            this.textBox_username.Size = new System.Drawing.Size(96, 20);
+            this.textBox_username.Size = new System.Drawing.Size(173, 20);
             this.textBox_username.TabIndex = 3;
             this.textBox_username.TextChanged += new System.EventHandler(this.textBox_username_TextChanged);
             // 
@@ -82,7 +82,7 @@
             // 
             this.textBox_password.Location = new System.Drawing.Point(75, 32);
             this.textBox_password.Name = "textBox_password";
-            this.textBox_password.Size = new System.Drawing.Size(96, 20);
+            this.textBox_password.Size = new System.Drawing.Size(173, 20);
             this.textBox_password.TabIndex = 0;
             this.textBox_password.TextChanged += new System.EventHandler(this.textBox_password_TextChanged);
             // 
@@ -101,7 +101,7 @@
             // 
             this.textBox_appToken.Location = new System.Drawing.Point(75, 58);
             this.textBox_appToken.Name = "textBox_appToken";
-            this.textBox_appToken.Size = new System.Drawing.Size(96, 20);
+            this.textBox_appToken.Size = new System.Drawing.Size(173, 20);
             this.textBox_appToken.TabIndex = 5;
             this.textBox_appToken.TextChanged += new System.EventHandler(this.textBox_appToken_TextChanged);
             // 
@@ -117,7 +117,7 @@
             // status_label
             // 
             this.status_label.AutoSize = true;
-            this.status_label.Location = new System.Drawing.Point(217, 13);
+            this.status_label.Location = new System.Drawing.Point(290, 13);
             this.status_label.Name = "status_label";
             this.status_label.Size = new System.Drawing.Size(95, 13);
             this.status_label.TabIndex = 8;

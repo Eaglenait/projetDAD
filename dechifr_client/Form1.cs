@@ -18,6 +18,8 @@ namespace dechifr_client
         bool TB_password = false;
         bool TB_appToken = false;
 
+        Authenticate t = new Authenticate();
+
         String apptoken = "F5BwBkWzvL1hGT8zHk8bPlw975VHMz";
 
         public Form1()
@@ -27,57 +29,57 @@ namespace dechifr_client
 
         private void buttonGetFile_Click(object sender, EventArgs e)
         {
-            //TODO : is logged in ?
-
-            OpenFileDialog d = new OpenFileDialog();
-            //only one selected file at once
-            d.Filter = "Text files | *.txt";
-            d.Multiselect = false;
-
-            //when OK is clicked what do we do
-            if (d.ShowDialog() == DialogResult.OK)
+            if (t.checkUserToken(textBox_username.Text))
             {
-                //TODO
+                OpenFileDialog d = new OpenFileDialog();
+                //only one selected file at once
+                d.Filter = "Text files | *.txt";
+                d.Multiselect = false;
 
-                if(d.CheckFileExists)
+                //when OK is clicked what do we do
+                if (d.ShowDialog() == DialogResult.OK)
                 {
-                    String path = d.FileName;
+                    if (d.CheckFileExists)
+                    {
+                        String path = d.
+                    }
                 }
             }
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            Authenticate t = new Authenticate();
-
-            Console.WriteLine("Login button clicked");
 
             //Check if apptoken is valid
             if (string.Compare(textBox_appToken.Text, apptoken) == 0)
             {
                 Console.WriteLine("App token valid");
-            } else {
-                Console.WriteLine("App token invalid");
-            }
 
-            //check if the 3 textBoxes are not empty
-            if (textBox_username.TextLength != 0 &&
-               textBox_password.TextLength != 0 &&
-               textBox_appToken.TextLength != 0)
-            {
-                //generate connection token
-                string connectionToken = t.connect(textBox_username.Text,
-                            textBox_password.Text,
-                            textBox_appToken.Text);
-
-                if(string.Compare(connectionToken, "invalid") == 0)
+                //check if the 3 textBoxes are not empty
+                if (textBox_username.TextLength != 0 &&
+                   textBox_password.TextLength != 0 &&
+                   textBox_appToken.TextLength != 0)
                 {
-                    //connection failed
+                    //generate connection token
+                    string connectionToken = t.connect(textBox_username.Text,
+                                                       textBox_password.Text,
+                                                       textBox_appToken.Text);
 
+                    //if connectionToken is "invalid" then the connect failed
+                    if (string.Compare(connectionToken, "invalid") == 0)
+                    {
+                        //connection failed
+                        Console.WriteLine("Connection failed");
+                        status_label.Text = "Connection failed";
+                    } else
+                    {
+                        Console.WriteLine("Connection successfull");
+                        status_label.Text = "connectionToken : " + connectionToken;
+                    }
                 }
-            } else {
-                //disable button else
-                login_btn.Enabled = false;
+            } else {//if app token is invalid
+                status_label.Text = "App Token Invalid";
+                Console.WriteLine("App token invalid");
             }
         }
 

@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authenticate.cs" />
+    <Compile Include="BruteForce.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -11,6 +11,9 @@ namespace dechifr_client
 {
     class Authenticate
     {
+        //token validity time
+        const double defaultValidity = 10;
+
         MySqlConnection msqlConnection;
         MySqlCommand msqlCommand = new MySqlCommand();
 
@@ -21,27 +24,37 @@ namespace dechifr_client
         }
 
         /*
-         Check if user is in db
+         Check if user is in db with password
              */
-        public bool checkUser(string username)
+        public bool checkUser(string username,string password)
         {
-            msqlCommand.CommandText = "SELECT user FROM `users`;";
+            msqlCommand.CommandText = "SELECT * FROM `users`;";
             try
             {
                 msqlConnection.Open();
                 MySqlDataReader msqlReader = msqlCommand.ExecuteReader();
                 while (msqlReader.Read())
                 {
+                    //msqlReader.GetString(0); //user
+                    //msqlReader.GetString(1); //password
+                    //msqlReader.GetString(2); //id
+
                     if (string.Compare(username, msqlReader.GetString(0)) == 0)
                     {
                         Console.WriteLine("user found");
+
+                        if (string.Compare(password, msqlReader.GetString(1)) == 0)
+                        {
+                            Console.WriteLine("password valid");
+                            return true;
+
+                        }
+                        else { Console.WriteLine("Password invalid"); }
                     }
-                    else
-                    {
-                        Console.WriteLine("user not found");
-                    }
+                    else { Console.WriteLine("user not found"); }
                 }
-            }catch(Exception er) { }
+            }
+            catch (Exception er) { }
             finally
             {
                 msqlConnection.Close();
@@ -50,12 +63,14 @@ namespace dechifr_client
         }
 
         /*
-         Connect the user and return a connection token
+         Connect the user and returns a connection token
+         adds this token to the session table with the default validity time
              */
         public string connect(string username, string password, string appToken)
         {
-            if (checkUser(username))
+            if (checkUser(username,password))
             {
+                //generate token
                 string ConnectionToken = "";
 
                 string.Concat(ConnectionToken, GetHashString(username));
@@ -63,6 +78,25 @@ namespace dechifr_client
                 string.Concat(ConnectionToken, GetHashString(appToken));
                 string.Concat(ConnectionToken, GetHashString(DateTime.Now.Second.ToString()));
 
+                DateTime validity = DateTime.Now.AddMinutes(defaultValidity);
+                string validityTime = validity.ToString("yyyy-MM-dd HH:mm:ss");
+
+                Console.WriteLine(validityTime);
+                msqlCommand.CommandText = string.Format("INSERT INTO `session`(`user`, `token`, `expires`) VALUES ('{0}','{1}','{2}')", username, password, validityTime);
+                try
+                {
+                    msqlConnection.Open();
+                    msqlCommand.ExecuteNonQuery();
+                   
+                }
+                catch (Exception er)
+                {
+                    Console.WriteLine(er.Message);
+                }
+                finally
+                {
+                    msqlConnection.Close();
+                }
                 return ConnectionToken = GetHashString(ConnectionToken);
 
             }
@@ -72,15 +106,41 @@ namespace dechifr_client
         }
 
         /*
-         generate connection (user) token when a valid user is logging in 
-         Token = hash( hash(username) + hash(password) + hash(apptoken))
+         check if users has a valid token
          */
-        string getUserToken(string username, string password, string apptoken)
+        public bool checkUserToken(string username)
         {
-            string hash_username = GetHashString(username);
+            msqlCommand.CommandText = "SELECT * FROM `session`;";
+            try
+            {
+                msqlConnection.Open();
+                MySqlDataReader msqlReader = msqlCommand.ExecuteReader();
+                while (msqlReader.Read())
+                {
+                    //if user has token
+                    if (string.Compare(username, msqlReader.GetString("user")) == 0)
+                    {
+                        //check token validity
+                        DateTime valid = msqlReader.GetDateTime("expires");
+                        if(valid > DateTime.Now)
+                        {
+                            Console.WriteLine("token time is still valid");
+                            return true;
+                        } else
+                        {
+                            Console.WriteLine("token time is invalid");
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception er) { }
+            finally
+            {
+                msqlConnection.Close();
+            }
 
-            //TODO
-            return "xception";
+            return false;
         }
 
         /*

@@ -16,8 +16,6 @@ namespace dechifr_client
         [STAThread]
         static void Main()
         {
-            Authenticate t = new Authenticate();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
