@@ -16,22 +16,7 @@ namespace dechifr_client
         [STAThread]
         static void Main()
         {
-            var dbCon = DBConnection.Instance();
-            if (dbCon.IsConnected())
-            {
-                string query = "SELECT user FROM users";
-                var cmd = new MySqlCommand(query, dbCon.Connection);
-                var reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    string col_user = reader.GetString(0);
-                    Console.WriteLine(col_user);
-                }
-            }
-
-            //Authenticate t = new Authenticate();
-            //t.checkUser("admin");
+            Authenticate t = new Authenticate();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

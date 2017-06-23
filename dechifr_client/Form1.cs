@@ -48,6 +48,8 @@ namespace dechifr_client
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+            Authenticate t = new Authenticate();
+
             Console.WriteLine("Login button clicked");
 
             //Check if apptoken is valid
@@ -63,7 +65,16 @@ namespace dechifr_client
                textBox_password.TextLength != 0 &&
                textBox_appToken.TextLength != 0)
             {
-   
+                //generate connection token
+                string connectionToken = t.connect(textBox_username.Text,
+                            textBox_password.Text,
+                            textBox_appToken.Text);
+
+                if(string.Compare(connectionToken, "invalid") == 0)
+                {
+                    //connection failed
+
+                }
             } else {
                 //disable button else
                 login_btn.Enabled = false;
