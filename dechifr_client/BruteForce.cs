@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
-using dechifr_client.ServiceReference1;
 
 namespace dechifr_client
 {
-    public sealed class BruteForce : ServiceReference1.MiddleWare
+    public sealed class BruteForce 
     {
         //thread safe singleton creation
         private static readonly Lazy<BruteForce> lazy = new Lazy<BruteForce>(() => new BruteForce());
@@ -19,10 +18,10 @@ namespace dechifr_client
         {
             //actual bruteforce loop
             taskList.Add(Task.Run(() => {
-                //only stop when asked to s
-                while(true)
+                //only stop when asked to stop
+                while (true)
                 {
-                    if(c.IsCancellationRequested){
+                    if (c.IsCancellationRequested) {
                         break; //get out of loop
                     }
                 }
@@ -38,26 +37,6 @@ namespace dechifr_client
             List<string> keys = new List<string>(100);
 
             return keys;
-        }
-
-        public string GetData(int value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<string> GetDataAsync(int value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<CompositeType> GetDataUsingDataContractAsync(CompositeType composite)
-        {
-            throw new NotImplementedException();
         }
     }
 }
