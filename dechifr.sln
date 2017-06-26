@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dechifr", "dechifr\dechifr.csproj", "{268BCCBA-E2AA-47F1-B400-D661BDFAABD3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dechifr_client", "dechifr_client\dechifr_client.csproj", "{F021102B-B72A-4B79-9CDE-20BACA65BA11}"
+	ProjectSection(ProjectDependencies) = postProject
+		{268BCCBA-E2AA-47F1-B400-D661BDFAABD3} = {268BCCBA-E2AA-47F1-B400-D661BDFAABD3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

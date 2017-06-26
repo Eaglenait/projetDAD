@@ -1,33 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+using dechifr_client.ServiceReference1;
 
 namespace dechifr_client
 {
-    class BruteForce
+    public sealed class BruteForce : ServiceReference1.MiddleWare
     {
-        private string _file;
-        private bool run = true;
+        //thread safe singleton creation
+        private static readonly Lazy<BruteForce> lazy = new Lazy<BruteForce>(() => new BruteForce());
 
-        public BruteForce(string file)
+        public static BruteForce Instance { get { return lazy.Value; } }
+
+        List<Task> taskList = new List<Task>();
+        
+        public void addTask(string list, CancellationToken c)
         {
-            file = _file;
+            //actual bruteforce loop
+            taskList.Add(Task.Run(() => {
+                //only stop when asked to s
+                while(true)
+                {
+                    if(c.IsCancellationRequested){
+                        break; //get out of loop
+                    }
+                }
+            }));
         }
 
-        public string bfTestKey()
+        /// <summary>
+        /// generate a shit-ton of keys to be tested by a brute force task
+        /// </summary>
+        /// <returns>a list of random keys</returns>
+        private List<string> getRandKey()
         {
+            List<string> keys = new List<string>(100);
 
-            return "TODO";
+            return keys;
         }
 
-        /*
-         -> lire un dico de clés
-         -> méthode de déchiffremnt
-         -> méthode qui teste les clés avec la méthode de déchiffrement
-         -> méthode d'interruption du bruteforce
-         */
+        public string GetData(int value)
+        {
+            throw new NotImplementedException();
+        }
 
+        public Task<string> GetDataAsync(int value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<CompositeType> GetDataUsingDataContractAsync(CompositeType composite)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

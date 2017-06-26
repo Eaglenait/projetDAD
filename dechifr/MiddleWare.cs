@@ -7,10 +7,10 @@ using System.ServiceModel.Web;
 using System.Text;
 
 namespace dechifr
-{
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
+{ 
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "MiddleWare" in both code and config file together.
     [ServiceContract]
-    public interface IService1
+    public interface MiddleWare
     {
 
         [OperationContract]
@@ -21,6 +21,7 @@ namespace dechifr
 
         // TODO: Add your service operations here
     }
+
 
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

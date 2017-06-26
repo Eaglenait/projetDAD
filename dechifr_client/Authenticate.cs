@@ -9,18 +9,27 @@ using MySql.Data.MySqlClient;
 
 namespace dechifr_client
 {
-    class Authenticate
+    class Authenticate : IDisposable
     {
-        //token validity time
+        //token validity time (in minutes)
         const double defaultValidity = 10;
 
         MySqlConnection msqlConnection;
         MySqlCommand msqlCommand = new MySqlCommand();
 
+        /// <summary>
+        /// public constructor
+        /// </summary>
         public Authenticate()
         {
             msqlConnection = new MySqlConnection("server = localhost; user id = root; Password = ; database = mabdd");
             msqlCommand.Connection = msqlConnection;
+        }
+
+        public void Dispose()
+        {
+            msqlConnection.Dispose();
+            msqlCommand.Dispose();
         }
 
         /*
@@ -64,21 +73,66 @@ namespace dechifr_client
          */
         public string connect(string username, string password, string appToken)
         {
-            if (checkUser(username,password))
+            if (checkUser(username, password))
             {
                 //generate token
-                string ConnectionToken = "";
+                /*
+                 TOKEN Format :
+                 MD5(
+                     MD5( username )
+                     MD5( password )
+                     MD5( apptoken ) 
+                     MD5( current seconds )
+                 ) 
+                 */
+                string hashed_username = GetHashString(username);
+                string hashed_password = GetHashString(password);
+                string hashed_appToken = GetHashString(appToken);
+                string hashed_time = GetHashString(DateTime.Now.Ticks.ToString());
 
-                string.Concat(ConnectionToken, GetHashString(username));
-                string.Concat(ConnectionToken, GetHashString(password));
-                string.Concat(ConnectionToken, GetHashString(appToken));
-                string.Concat(ConnectionToken, GetHashString(DateTime.Now.Second.ToString()));
+                string hashed_concat = hashed_username + hashed_password + hashed_appToken + hashed_time;
+                
+                string ConnectionToken = GetHashString(hashed_concat); //finalise hash
 
+                //time that the token will be valid (defaultvalidity is the time in minutes that the token is valid)
                 DateTime validity = DateTime.Now.AddMinutes(defaultValidity);
-                string validityTime = validity.ToString("yyyy-MM-dd HH:mm:ss");
+                string validityTime = validity.ToString("yyyy-MM-dd HH:mm:ss"); // convert to MySQL datetime Format
 
-                Console.WriteLine(validityTime);
-                msqlCommand.CommandText = string.Format("INSERT INTO `session`(`id`,`user`, `token`, `expires`) VALUES ('{0}','{1}','{2}')", username, password, validityTime);
+                //we prepare the insert command in case we want to prepend a DELETE command
+                string insertCommand = string.Format("INSERT INTO `session`(`user`, `token`, `expires`) VALUES ('{0}','{1}','{2}')", username, ConnectionToken, validityTime);
+                
+                //check that the user doesn't already have a token in database
+                msqlCommand.CommandText = string.Format("SELECT user FROM `session`");
+                bool duplicate = false; //if there is a duplicate user token
+                try
+                {
+
+                    msqlConnection.Open();
+                    MySqlDataReader msqlReader = msqlCommand.ExecuteReader();
+                    while (msqlReader.Read())
+                    {
+                        //if user is already in base
+                        if(string.Compare(msqlReader.GetString("user"), username) == 0)
+                        {
+                            duplicate = true;
+                        }
+                    }
+                }catch(Exception er ) { Console.WriteLine(er.Message); }
+                finally
+                {
+                    msqlConnection.Close();
+                }
+
+                //if there is a duplicate user token we add to the insertion command a delete statement
+                if(duplicate)
+                {
+                    string deleteStatement = string.Format("DELETE FROM `session` WHERE `user` = '{0}'; ", username);
+                    insertCommand = deleteStatement + insertCommand;
+                    Console.WriteLine(insertCommand);
+                }
+
+                //now we insert the token 'session' in the database
+                msqlCommand.CommandText = insertCommand;
                 try
                 {
                     msqlConnection.Open();
@@ -87,13 +141,15 @@ namespace dechifr_client
                 }
                 catch (Exception er)
                 {
+                    //Debug MySQL error message
+                    Console.WriteLine("MySQL session token insert error : ");
                     Console.WriteLine(er.Message);
                 }
                 finally
                 {
                     msqlConnection.Close();
                 }
-                return ConnectionToken = GetHashString(ConnectionToken);
+                return ConnectionToken;
 
             }
             else { 
@@ -102,7 +158,7 @@ namespace dechifr_client
         }
 
         /*
-         check if users has a valid token
+         check if users has a valid connection token
          */
         public bool checkUserToken(string username, string token)
         {
@@ -120,7 +176,7 @@ namespace dechifr_client
 
                         //check token validity
                         DateTime valid = msqlReader.GetDateTime("expires");
-                        if(valid > DateTime.Now)
+                        if (valid > DateTime.Now)
                         {
                             Console.WriteLine("token time is still valid");
                             return true;
