@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dechifr_client", "dechifr_client\dechifr_client.csproj", "{F021102B-B72A-4B79-9CDE-20BACA65BA11}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0B125D42-9C54-4A4C-8654-19F05F538038} = {0B125D42-9C54-4A4C-8654-19F05F538038}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware", "Middleware\Middleware.csproj", "{0B125D42-9C54-4A4C-8654-19F05F538038}"
 EndProject

@@ -14,7 +14,7 @@ namespace Middleware
     {
 
         [OperationContract]
-        void interruptTask();
+        void interruptTask(int nr);
 
     }
 }

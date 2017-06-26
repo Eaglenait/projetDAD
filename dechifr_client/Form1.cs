@@ -119,15 +119,14 @@ namespace dechifr_client
             var brute = BruteForce.Instance;
             cts = new CancellationTokenSource();
 
-            brute.addTask("a",cts.Token);
-            brute.addTask("b",cts.Token);
+            brute.addTask(label_filePath.Text,6, cts.Token);
 
             BfControl bf = new BfControl();
             bf.Location = new System.Drawing.Point(293, (dyn_index * 61));
             dyn_index++;
             bf.setLabel(label_filePath.Text);
             bf.button1.Click += (o, i) => {
-                Console.WriteLine();
+                Console.WriteLine("Thread killed");
                 cts.Cancel();
                 bf.Dispose();
                 dyn_index--;
