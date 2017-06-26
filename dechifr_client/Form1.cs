@@ -117,14 +117,18 @@ namespace dechifr_client
 
             //call bruteforce here
             var brute = BruteForce.Instance;
+            cts = new CancellationTokenSource();
+
+            brute.addTask("a",cts.Token);
+            brute.addTask("b",cts.Token);
 
             BfControl bf = new BfControl();
             bf.Location = new System.Drawing.Point(293, (dyn_index * 61));
             dyn_index++;
             bf.setLabel(label_filePath.Text);
             bf.button1.Click += (o, i) => {
-                cts = new CancellationTokenSource();
-                
+                Console.WriteLine();
+                cts.Cancel();
                 bf.Dispose();
                 dyn_index--;
                 //cancel button click

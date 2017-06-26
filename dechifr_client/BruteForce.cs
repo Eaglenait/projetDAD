@@ -2,41 +2,46 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
+using dechifr_client.ServiceReference1;
 
 namespace dechifr_client
 {
-    public sealed class BruteForce 
+    public sealed class BruteForce : ProjectEndpoint
     {
+        ProjectEndpointClient service = new ProjectEndpointClient();
+        
         //thread safe singleton creation
         private static readonly Lazy<BruteForce> lazy = new Lazy<BruteForce>(() => new BruteForce());
-
         public static BruteForce Instance { get { return lazy.Value; } }
 
         List<Task> taskList = new List<Task>();
-        
-        public void addTask(string list, CancellationToken c)
+
+        public void addTask(string file, CancellationToken c)
         {
             //actual bruteforce loop
             taskList.Add(Task.Run(() => {
                 //only stop when asked to stop
-                while (true)
+                Console.WriteLine("Creating bruteforce thread");
+                while (!c.IsCancellationRequested)
                 {
-                    if (c.IsCancellationRequested) {
-                        break; //get out of loop
-                    }
+                    sendToJava(file,"bauer tu pue", "nique le système");
                 }
-            }));
+            },c));
         }
 
-        /// <summary>
-        /// generate a shit-ton of keys to be tested by a brute force task
-        /// </summary>
-        /// <returns>a list of random keys</returns>
-        private List<string> getRandKey()
+        private void sendToJava(string d, string k, string filename)
         {
-            List<string> keys = new List<string>(100);
+            service.queueOperation(d,k,filename);
+        }
 
-            return keys;
+        public queueOperationResponse queueOperation(queueOperationRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<queueOperationResponse> queueOperationAsync(queueOperationRequest request)
+        {
+            throw new NotImplementedException();
         }
     }
 }
