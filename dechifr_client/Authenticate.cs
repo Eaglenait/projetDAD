@@ -11,6 +11,7 @@ namespace dechifr_client
 {
     class Authenticate : IDisposable
     {
+
         //token validity time (in minutes)
         const double defaultValidity = 10;
 
