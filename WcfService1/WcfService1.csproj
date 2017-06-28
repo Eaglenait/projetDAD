@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0B125D42-9C54-4A4C-8654-19F05F538038}</ProjectGuid>
+    <ProjectGuid>{CCF60709-E64C-4DA3-A0B1-528CAC52CE9F}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Middleware</RootNamespace>
-    <AssemblyName>Middleware</AssemblyName>
+    <RootNamespace>WcfService1</RootNamespace>
+    <AssemblyName>WcfService1</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -98,7 +98,7 @@
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
-    <Compile Include="IMiddleware.cs" />
+    <Compile Include="IService1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -116,21 +116,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'dechifr_opti|AnyCPU'">
-    <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -141,9 +129,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>21806</DevelopmentServerPort>
+          <DevelopmentServerPort>2073</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:21806/</IISUrl>
+          <IISUrl>http://localhost:2073/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

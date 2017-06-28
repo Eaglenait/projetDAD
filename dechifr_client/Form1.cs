@@ -1,24 +1,21 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
+using System.IO;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using dechifr_client.BrutusControl;
 
 namespace dechifr_client
 {
     public partial class Form1 : Form
     {
-        //bruteforce instance cancellation token
-        CancellationTokenSource cts;
+        BrutusControlClient brutusControl = new BrutusControlClient();
 
         //index that is used to create the dynamic controls
         static int dyn_index = 1;
+
+        //selected file stream
+        string filepath;
 
         //for login button activation
         bool TB_username = false;
@@ -30,7 +27,8 @@ namespace dechifr_client
 
         Authenticate t = new Authenticate();
 
-        const string apptoken = "F5BwBkWzvL1hGT8zHk8bPlw975VHMz";
+        //const string apptoken = "F5BwBkWzvL1hGT8zHk8bPlw975VHMz";
+        const string apptoken = "A";
 
         public Form1()
         {
@@ -48,9 +46,10 @@ namespace dechifr_client
                 //when OK is clicked what do we do
                 if (d.ShowDialog() == DialogResult.OK)
                 {
-                    if (d.CheckFileExists)
+                    if (d.CheckFileExists && d.CheckPathExists)
                     {
                         label_filePath.Text = d.FileName;
+                        filepath = d.FileName;
 
                         //activate send file button
                         TB_fileselected = true;
@@ -89,6 +88,7 @@ namespace dechifr_client
                         status_label.Text = "Connection failed";
                     } else
                     {
+
                         //if the connectionToken is valid we let the user know by displaying it and by putting it in the token textbox
                         Console.WriteLine("Connection successfull");
                         status_label.Text = "connectionToken : " + connectionToken;
@@ -116,22 +116,28 @@ namespace dechifr_client
             Console.WriteLine("file sended");
 
             //call bruteforce here
-            var brute = BruteForce.Instance;
-            cts = new CancellationTokenSource();
+            //var brute = BruteForce.Instance;
+            CancellationTokenSource cts = new CancellationTokenSource();
 
-            brute.addTask(label_filePath.Text,6, cts.Token);
-
+            string msg = File.ReadAllText(filepath);
+            Console.WriteLine("File is {0}", msg);
+                        
             BfControl bf = new BfControl();
-            bf.Location = new System.Drawing.Point(293, (dyn_index * 61));
+            bf.Location = new Point(293, (dyn_index * 61));
+
+            //Old method : direct call to addTask
+            //var brute = BruteForce.Instance;
+            //brute.addTask(msg, cts.Token);
+            
+            //brutusControl.startBrutus(msg, cts.Token);
+
             dyn_index++;
             bf.setLabel(label_filePath.Text);
             bf.button1.Click += (o, i) => {
                 Console.WriteLine("Thread killed");
                 cts.Cancel();
                 bf.Dispose();
-                dyn_index--;
-                //cancel button click
-                // add cancellation token to capture list of the lambda
+                --dyn_index;
             };
             mainFloatPanel.Controls.Add(bf);
         }

@@ -2,84 +2,44 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
-using dechifr_client.ServiceReference1;
+using dechifr_client.BrutusControl;
+using dechifr_client.VerificationService;
+using System.IO;
 
 namespace dechifr_client
 {
     public sealed class BruteForce
     {
-        readonly static char[] alpha = new char[26] {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-
-        ProjectEndpointClient service = new ProjectEndpointClient();
-
         //thread safe singleton creation
         private static readonly Lazy<BruteForce> lazy = new Lazy<BruteForce>(() => new BruteForce());
         public static BruteForce Instance { get { return lazy.Value; } }
 
-        List<Task> tasksList = new List<Task>();
+       List<Task> tasksList = new List<Task>();
+
+        ProjectEndpointClient service = new ProjectEndpointClient();
 
         /// <summary>
         /// Create Bruteforce task
         /// </summary>
         /// <param name="file"></param>
-        /// <param name="keysize">size of the key to test</param>
         /// <param name="c"></param>
-        public void addTask(string file,int keysize, CancellationToken t_cancel)
+        public void addTask(string file, CancellationToken t_cancel)
         {
+
             //actual bruteforce loop
-            tasksList.Add(Task.Factory.StartNew(() => {
+            tasksList.Add(Task.Factory.StartNew(() =>
+            {
+                Keygen k = new Keygen();
+
                 //only stop when asked to stop
                 Console.WriteLine("Creating bruteforce thread");
-                //index to loop the key
-                UInt16 k_index = 0;
-                char[] key = new char[keysize];
 
-                key = genKey(keysize);
+                k.keyEnum("", 1, 6, file);
 
-                while (true)
-                {
-                    if (t_cancel.IsCancellationRequested) { break; }
+                Console.WriteLine("finished");
 
-                    foreach(char c in file)
-                    {
-                        //xor here
-
-                    }
-
-                    //send data to java
-                    service.queueOperation("message", "key", "filename");
-                }
             }, t_cancel, TaskCreationOptions.DenyChildAttach, TaskScheduler.Default));
-        }
-
-        private static char[] genKey(int keysize)
-        {
-            char[] key = new char[keysize];
-
-            UInt16 pos = 0; //incremented char pos
-            UInt16 alpha_at_pos = 0;
-            //fist run return A
-            if (key == null)
-            {
-                for (int i = 0; i < keysize; ++i)
-                {
-                    key[i] = alpha[0];
-                }
-                return key;
-            }
-            else
-            {
-                if(key[pos] != alpha[26])
-                {
-                    key[pos] = alpha[alpha_at_pos++];
-                }
-                else
-                {
-                    
-                    pos++;
-                }
-                return key;
-            }
+            
         }
 
         /// <summary>
@@ -90,7 +50,7 @@ namespace dechifr_client
         /// <param name="filename"></param>
         private void sendToJava(string d, string k, string filename)
         {
-            service.queueOperation(d,k,filename);
+            service.queueOperation(d, k, filename);
         }
 
         /// <summary>
@@ -99,7 +59,7 @@ namespace dechifr_client
         /// <param name="i"></param>
         public void killTask(int i)
         {
-        
+
         }
 
         /// <summary>
@@ -110,12 +70,18 @@ namespace dechifr_client
         {
 
         }
-        
+
+        /// <summary>
+        /// XOR encryption or decryption
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         private static string encryptDecrypt(string input, char[] key)
         {
             char[] output = new char[input.Length];
 
-            for (int i = 0; i < input.Length; i++)
+            for(int i = 0; i < input.Length; ++i)
             {
                 output[i] = (char)(input[i] ^ key[i % key.Length]);
             }

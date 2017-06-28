@@ -60,7 +60,7 @@ namespace dechifr_client
                     else { Console.WriteLine("user not found"); }
                 }
             }
-            catch (Exception er) { }
+            catch (Exception er) { Console.WriteLine(er.Message); }
             finally
             {
                 msqlConnection.Close();
@@ -189,7 +189,7 @@ namespace dechifr_client
                     }
                 }
             }
-            catch (Exception er) { }
+            catch (Exception er) { Console.WriteLine(er.Message); }
             finally
             {
                 msqlConnection.Close();

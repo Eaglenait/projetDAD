@@ -8,19 +8,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace dechifr_client.ServiceReference1 {
+namespace dechifr_client.VerificationService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://facade.exia.com/", ConfigurationName="ServiceReference1.ProjectEndpoint")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://facade.exia.com/", ConfigurationName="VerificationService.ProjectEndpoint")]
     public interface ProjectEndpoint {
         
         // CODEGEN: Generating message contract since element name decryptedMessage from namespace  is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://facade.exia.com/ProjectEndpoint/queueOperationRequest", ReplyAction="http://facade.exia.com/ProjectEndpoint/queueOperationResponse")]
-        dechifr_client.ServiceReference1.queueOperationResponse queueOperation(dechifr_client.ServiceReference1.queueOperationRequest request);
+        dechifr_client.VerificationService.queueOperationResponse queueOperation(dechifr_client.VerificationService.queueOperationRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://facade.exia.com/ProjectEndpoint/queueOperationRequest", ReplyAction="http://facade.exia.com/ProjectEndpoint/queueOperationResponse")]
-        System.Threading.Tasks.Task<dechifr_client.ServiceReference1.queueOperationResponse> queueOperationAsync(dechifr_client.ServiceReference1.queueOperationRequest request);
+        System.Threading.Tasks.Task<dechifr_client.VerificationService.queueOperationResponse> queueOperationAsync(dechifr_client.VerificationService.queueOperationRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -30,12 +30,12 @@ namespace dechifr_client.ServiceReference1 {
     public partial class queueOperationRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="queueOperation", Namespace="http://facade.exia.com/", Order=0)]
-        public dechifr_client.ServiceReference1.queueOperationRequestBody Body;
+        public dechifr_client.VerificationService.queueOperationRequestBody Body;
         
         public queueOperationRequest() {
         }
         
-        public queueOperationRequest(dechifr_client.ServiceReference1.queueOperationRequestBody Body) {
+        public queueOperationRequest(dechifr_client.VerificationService.queueOperationRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -72,12 +72,12 @@ namespace dechifr_client.ServiceReference1 {
     public partial class queueOperationResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="queueOperationResponse", Namespace="http://facade.exia.com/", Order=0)]
-        public dechifr_client.ServiceReference1.queueOperationResponseBody Body;
+        public dechifr_client.VerificationService.queueOperationResponseBody Body;
         
         public queueOperationResponse() {
         }
         
-        public queueOperationResponse(dechifr_client.ServiceReference1.queueOperationResponseBody Body) {
+        public queueOperationResponse(dechifr_client.VerificationService.queueOperationResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -100,12 +100,12 @@ namespace dechifr_client.ServiceReference1 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ProjectEndpointChannel : dechifr_client.ServiceReference1.ProjectEndpoint, System.ServiceModel.IClientChannel {
+    public interface ProjectEndpointChannel : dechifr_client.VerificationService.ProjectEndpoint, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ProjectEndpointClient : System.ServiceModel.ClientBase<dechifr_client.ServiceReference1.ProjectEndpoint>, dechifr_client.ServiceReference1.ProjectEndpoint {
+    public partial class ProjectEndpointClient : System.ServiceModel.ClientBase<dechifr_client.VerificationService.ProjectEndpoint>, dechifr_client.VerificationService.ProjectEndpoint {
         
         public ProjectEndpointClient() {
         }
@@ -127,32 +127,32 @@ namespace dechifr_client.ServiceReference1 {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        dechifr_client.ServiceReference1.queueOperationResponse dechifr_client.ServiceReference1.ProjectEndpoint.queueOperation(dechifr_client.ServiceReference1.queueOperationRequest request) {
+        dechifr_client.VerificationService.queueOperationResponse dechifr_client.VerificationService.ProjectEndpoint.queueOperation(dechifr_client.VerificationService.queueOperationRequest request) {
             return base.Channel.queueOperation(request);
         }
         
         public bool queueOperation(string decryptedMessage, string key, string filename) {
-            dechifr_client.ServiceReference1.queueOperationRequest inValue = new dechifr_client.ServiceReference1.queueOperationRequest();
-            inValue.Body = new dechifr_client.ServiceReference1.queueOperationRequestBody();
+            dechifr_client.VerificationService.queueOperationRequest inValue = new dechifr_client.VerificationService.queueOperationRequest();
+            inValue.Body = new dechifr_client.VerificationService.queueOperationRequestBody();
             inValue.Body.decryptedMessage = decryptedMessage;
             inValue.Body.key = key;
             inValue.Body.filename = filename;
-            dechifr_client.ServiceReference1.queueOperationResponse retVal = ((dechifr_client.ServiceReference1.ProjectEndpoint)(this)).queueOperation(inValue);
+            dechifr_client.VerificationService.queueOperationResponse retVal = ((dechifr_client.VerificationService.ProjectEndpoint)(this)).queueOperation(inValue);
             return retVal.Body.addedToQueue;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<dechifr_client.ServiceReference1.queueOperationResponse> dechifr_client.ServiceReference1.ProjectEndpoint.queueOperationAsync(dechifr_client.ServiceReference1.queueOperationRequest request) {
+        System.Threading.Tasks.Task<dechifr_client.VerificationService.queueOperationResponse> dechifr_client.VerificationService.ProjectEndpoint.queueOperationAsync(dechifr_client.VerificationService.queueOperationRequest request) {
             return base.Channel.queueOperationAsync(request);
         }
         
-        public System.Threading.Tasks.Task<dechifr_client.ServiceReference1.queueOperationResponse> queueOperationAsync(string decryptedMessage, string key, string filename) {
-            dechifr_client.ServiceReference1.queueOperationRequest inValue = new dechifr_client.ServiceReference1.queueOperationRequest();
-            inValue.Body = new dechifr_client.ServiceReference1.queueOperationRequestBody();
+        public System.Threading.Tasks.Task<dechifr_client.VerificationService.queueOperationResponse> queueOperationAsync(string decryptedMessage, string key, string filename) {
+            dechifr_client.VerificationService.queueOperationRequest inValue = new dechifr_client.VerificationService.queueOperationRequest();
+            inValue.Body = new dechifr_client.VerificationService.queueOperationRequestBody();
             inValue.Body.decryptedMessage = decryptedMessage;
             inValue.Body.key = key;
             inValue.Body.filename = filename;
-            return ((dechifr_client.ServiceReference1.ProjectEndpoint)(this)).queueOperationAsync(inValue);
+            return ((dechifr_client.VerificationService.ProjectEndpoint)(this)).queueOperationAsync(inValue);
         }
     }
 }

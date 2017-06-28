@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="87ed8095-473f-4687-be33-d896048cae41" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1919/BrutusControl.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BrutusControl.xsd" MetadataType="Schema" ID="435a13aa-e565-4c7f-aea5-446d0c43f258" SourceId="1" SourceUrl="http://localhost:1919/BrutusControl.svc?xsd=xsd1" />
+    <MetadataFile FileName="BrutusControl.disco" MetadataType="Disco" ID="8446fb82-d0b5-4ee8-8acc-03577d85f05c" SourceId="1" SourceUrl="http://localhost:1919/BrutusControl.svc?disco" />
+    <MetadataFile FileName="BrutusControl1.xsd" MetadataType="Schema" ID="5de4b53b-84af-4668-a619-29eafa9142a9" SourceId="1" SourceUrl="http://localhost:1919/BrutusControl.svc?xsd=xsd0" />
+    <MetadataFile FileName="BrutusControl2.xsd" MetadataType="Schema" ID="bb40ea5f-2d73-4ace-8b70-d7c1a701a54a" SourceId="1" SourceUrl="http://localhost:1919/BrutusControl.svc?xsd=xsd2" />
+    <MetadataFile FileName="BrutusControl.wsdl" MetadataType="Wsdl" ID="34606e66-75a7-4086-95e1-a4ce41d7dd2a" SourceId="1" SourceUrl="http://localhost:1919/BrutusControl.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

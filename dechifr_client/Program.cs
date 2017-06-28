@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using dechifr_client.ServiceReference1;
 
 namespace dechifr_client
 {
@@ -13,7 +11,6 @@ namespace dechifr_client
         [STAThread]
         static void Main()
         {
-            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

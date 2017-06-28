@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="tLg7zQzqLXy7ZPeyh2xDbv30pr0=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="a2cvpLZBNSaV+tfc1IR4Y1bwKgs=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="projectEndpointBinding">
+    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IBrutusControl">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>projectEndpointBinding</serializedValue>
+          <serializedValue>BasicHttpBinding_IBrutusControl</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="projectEndpoint" contract="ServiceReference1.ProjectEndpoint" bindingType="basicHttpBinding" address="http://10.167.50.42:10080/projectService/WebServiceBean" bindingConfiguration="projectEndpointBinding">
+    <endpoint name="BasicHttpBinding_IBrutusControl" contract="BrutusControl.IBrutusControl" bindingType="basicHttpBinding" address="http://localhost:1919/BrutusControl.svc" bindingConfiguration="BasicHttpBinding_IBrutusControl">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://10.167.50.42:10080/projectService/WebServiceBean</serializedValue>
+          <serializedValue>http://localhost:1919/BrutusControl.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -124,10 +124,10 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>projectEndpointBinding</serializedValue>
+          <serializedValue>BasicHttpBinding_IBrutusControl</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ServiceReference1.ProjectEndpoint</serializedValue>
+          <serializedValue>BrutusControl.IBrutusControl</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -187,7 +187,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>projectEndpoint</serializedValue>
+          <serializedValue>BasicHttpBinding_IBrutusControl</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

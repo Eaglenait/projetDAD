@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="09692c07-58ca-4cb1-a27d-03175ec25dd4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0a2fa419-1894-4ee8-83e5-8bed3e34e658" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="http://10.167.50.42:10080/projectService/WebServiceBean?WSDL" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="WebServiceBean.xsd" MetadataType="Schema" ID="9de977fe-e426-46bb-ac7d-468fbe86c61e" SourceId="1" SourceUrl="http://10.167.50.42:10080/projectService/WebServiceBean?xsd=1" />
-    <MetadataFile FileName="projectService.wsdl" MetadataType="Wsdl" ID="c2a40939-62c7-4555-ac3a-766d032685ae" SourceId="1" SourceUrl="http://10.167.50.42:10080/projectService/WebServiceBean?WSDL" />
+    <MetadataFile FileName="WebServiceBean.xsd" MetadataType="Schema" ID="8124a635-e743-44fe-8a95-814bfc8a12e5" SourceId="1" SourceUrl="http://10.167.50.42:10080/projectService/WebServiceBean?xsd=1" />
+    <MetadataFile FileName="projectService.wsdl" MetadataType="Wsdl" ID="a83ac2f7-3076-4ed6-840d-efb259ac2efe" SourceId="1" SourceUrl="http://10.167.50.42:10080/projectService/WebServiceBean?WSDL" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
