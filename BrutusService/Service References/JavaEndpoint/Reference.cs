@@ -8,19 +8,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace dechifr_client.VerificationService {
+namespace BrutusService.JavaEndpoint {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://facade.exia.com/", ConfigurationName="VerificationService.ProjectEndpoint")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://facade.exia.com/", ConfigurationName="JavaEndpoint.ProjectEndpoint")]
     public interface ProjectEndpoint {
         
         // CODEGEN: Generating message contract since element name decryptedMessage from namespace  is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://facade.exia.com/ProjectEndpoint/queueOperationRequest", ReplyAction="http://facade.exia.com/ProjectEndpoint/queueOperationResponse")]
-        dechifr_client.VerificationService.queueOperationResponse queueOperation(dechifr_client.VerificationService.queueOperationRequest request);
+        BrutusService.JavaEndpoint.queueOperationResponse queueOperation(BrutusService.JavaEndpoint.queueOperationRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://facade.exia.com/ProjectEndpoint/queueOperationRequest", ReplyAction="http://facade.exia.com/ProjectEndpoint/queueOperationResponse")]
-        System.Threading.Tasks.Task<dechifr_client.VerificationService.queueOperationResponse> queueOperationAsync(dechifr_client.VerificationService.queueOperationRequest request);
+        System.Threading.Tasks.Task<BrutusService.JavaEndpoint.queueOperationResponse> queueOperationAsync(BrutusService.JavaEndpoint.queueOperationRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -30,12 +30,12 @@ namespace dechifr_client.VerificationService {
     public partial class queueOperationRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="queueOperation", Namespace="http://facade.exia.com/", Order=0)]
-        public dechifr_client.VerificationService.queueOperationRequestBody Body;
+        public BrutusService.JavaEndpoint.queueOperationRequestBody Body;
         
         public queueOperationRequest() {
         }
         
-        public queueOperationRequest(dechifr_client.VerificationService.queueOperationRequestBody Body) {
+        public queueOperationRequest(BrutusService.JavaEndpoint.queueOperationRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -76,12 +76,12 @@ namespace dechifr_client.VerificationService {
     public partial class queueOperationResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="queueOperationResponse", Namespace="http://facade.exia.com/", Order=0)]
-        public dechifr_client.VerificationService.queueOperationResponseBody Body;
+        public BrutusService.JavaEndpoint.queueOperationResponseBody Body;
         
         public queueOperationResponse() {
         }
         
-        public queueOperationResponse(dechifr_client.VerificationService.queueOperationResponseBody Body) {
+        public queueOperationResponse(BrutusService.JavaEndpoint.queueOperationResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -104,12 +104,12 @@ namespace dechifr_client.VerificationService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ProjectEndpointChannel : dechifr_client.VerificationService.ProjectEndpoint, System.ServiceModel.IClientChannel {
+    public interface ProjectEndpointChannel : BrutusService.JavaEndpoint.ProjectEndpoint, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ProjectEndpointClient : System.ServiceModel.ClientBase<dechifr_client.VerificationService.ProjectEndpoint>, dechifr_client.VerificationService.ProjectEndpoint {
+    public partial class ProjectEndpointClient : System.ServiceModel.ClientBase<BrutusService.JavaEndpoint.ProjectEndpoint>, BrutusService.JavaEndpoint.ProjectEndpoint {
         
         public ProjectEndpointClient() {
         }
@@ -131,34 +131,34 @@ namespace dechifr_client.VerificationService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        dechifr_client.VerificationService.queueOperationResponse dechifr_client.VerificationService.ProjectEndpoint.queueOperation(dechifr_client.VerificationService.queueOperationRequest request) {
+        BrutusService.JavaEndpoint.queueOperationResponse BrutusService.JavaEndpoint.ProjectEndpoint.queueOperation(BrutusService.JavaEndpoint.queueOperationRequest request) {
             return base.Channel.queueOperation(request);
         }
         
         public bool queueOperation(string decryptedMessage, string key, string filename, int token) {
-            dechifr_client.VerificationService.queueOperationRequest inValue = new dechifr_client.VerificationService.queueOperationRequest();
-            inValue.Body = new dechifr_client.VerificationService.queueOperationRequestBody();
+            BrutusService.JavaEndpoint.queueOperationRequest inValue = new BrutusService.JavaEndpoint.queueOperationRequest();
+            inValue.Body = new BrutusService.JavaEndpoint.queueOperationRequestBody();
             inValue.Body.decryptedMessage = decryptedMessage;
             inValue.Body.key = key;
             inValue.Body.filename = filename;
             inValue.Body.token = token;
-            dechifr_client.VerificationService.queueOperationResponse retVal = ((dechifr_client.VerificationService.ProjectEndpoint)(this)).queueOperation(inValue);
+            BrutusService.JavaEndpoint.queueOperationResponse retVal = ((BrutusService.JavaEndpoint.ProjectEndpoint)(this)).queueOperation(inValue);
             return retVal.Body.addedToQueue;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<dechifr_client.VerificationService.queueOperationResponse> dechifr_client.VerificationService.ProjectEndpoint.queueOperationAsync(dechifr_client.VerificationService.queueOperationRequest request) {
+        System.Threading.Tasks.Task<BrutusService.JavaEndpoint.queueOperationResponse> BrutusService.JavaEndpoint.ProjectEndpoint.queueOperationAsync(BrutusService.JavaEndpoint.queueOperationRequest request) {
             return base.Channel.queueOperationAsync(request);
         }
         
-        public System.Threading.Tasks.Task<dechifr_client.VerificationService.queueOperationResponse> queueOperationAsync(string decryptedMessage, string key, string filename, int token) {
-            dechifr_client.VerificationService.queueOperationRequest inValue = new dechifr_client.VerificationService.queueOperationRequest();
-            inValue.Body = new dechifr_client.VerificationService.queueOperationRequestBody();
+        public System.Threading.Tasks.Task<BrutusService.JavaEndpoint.queueOperationResponse> queueOperationAsync(string decryptedMessage, string key, string filename, int token) {
+            BrutusService.JavaEndpoint.queueOperationRequest inValue = new BrutusService.JavaEndpoint.queueOperationRequest();
+            inValue.Body = new BrutusService.JavaEndpoint.queueOperationRequestBody();
             inValue.Body.decryptedMessage = decryptedMessage;
             inValue.Body.key = key;
             inValue.Body.filename = filename;
             inValue.Body.token = token;
-            return ((dechifr_client.VerificationService.ProjectEndpoint)(this)).queueOperationAsync(inValue);
+            return ((BrutusService.JavaEndpoint.ProjectEndpoint)(this)).queueOperationAsync(inValue);
         }
     }
 }

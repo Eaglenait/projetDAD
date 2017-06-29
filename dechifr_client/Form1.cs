@@ -2,6 +2,7 @@
 using System.IO;
 using System.Drawing;
 using System.Threading;
+using System.ServiceModel;
 using System.Windows.Forms;
 using dechifr_client.BrutusControl;
 
@@ -9,8 +10,8 @@ namespace dechifr_client
 {
     public partial class Form1 : Form
     {
-        BrutusControlClient brutusControl = new BrutusControlClient();
-
+        readonly BrutusControlClient bcc = new BrutusControlClient("projectEndpoint2");
+        
         //index that is used to create the dynamic controls
         static int dyn_index = 1;
 
@@ -115,22 +116,16 @@ namespace dechifr_client
         {
             Console.WriteLine("file sended");
 
-            //call bruteforce here
-            //var brute = BruteForce.Instance;
-            CancellationTokenSource cts = new CancellationTokenSource();
-
             string msg = File.ReadAllText(filepath);
             Console.WriteLine("File is {0}", msg);
-                        
+
+            //create new form module
             BfControl bf = new BfControl();
             bf.Location = new Point(293, (dyn_index * 61));
-
-            //Old method : direct call to addTask
-            //var brute = BruteForce.Instance;
-            //brute.addTask(msg, cts.Token);
             
-            //brutusControl.startBrutus(msg, cts.Token);
-
+            CancellationTokenSource cts = new CancellationTokenSource();
+            bcc.startBrutus(msg, label_filePath.Text, cts);
+            
             dyn_index++;
             bf.setLabel(label_filePath.Text);
             bf.button1.Click += (o, i) => {

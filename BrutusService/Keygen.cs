@@ -1,15 +1,18 @@
-﻿using dechifr_client.VerificationService;
+﻿using BrutusService.JavaEndpoint;
+using System;
+using System.Text;
+using System.Threading;
 
-namespace dechifr_client
+namespace BrutusService
 {
-    public sealed class Keygen
+    internal sealed class Keygen
     {
         //list of possible chars
         private static readonly string[] validChars = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
-        static ProjectEndpointClient cc = new ProjectEndpointClient();
+        static ProjectEndpointClient cc = new ProjectEndpointClient("projectEndpointhttp");
 
-        public Keygen() {}
+        public Keygen() { }
 
         private static string encryptDecrypt(string input, char[] key)
         {
@@ -19,8 +22,11 @@ namespace dechifr_client
             {
                 output[i] = (char)(input[i] ^ key[i % key.Length]);
             }
+            byte[] bytes = Encoding.Default.GetBytes(output);
 
-            return new string(output);
+
+            
+            return Encoding.UTF8.GetString(bytes);
         }
 
         /// <summary>
@@ -29,22 +35,24 @@ namespace dechifr_client
         /// <param name="prefix">if you have the start of the key set it here</param>
         /// <param name="level">key length to begin with ex : 2 would start with key "aa"</param>
         /// <param name="maxlength">maximum key length</param>
-        public void keyEnum(string prefix, int level, int maxlength, string msg)
+        public void keyEnum(string prefix, int level, int maxlength, string msg, CancellationTokenSource f)
         {
             level += 1;
             foreach (string c in validChars)
             {
+                if (f.IsCancellationRequested) { break; }
+
                 string key = prefix + c;
                 char[] n_key = key.ToCharArray();
 
-                
                 string decrypted_message = encryptDecrypt(msg, n_key);
+
                 //Console.WriteLine("decrypted_message =  {0}", decrypted_message);
                 //Console.WriteLine("key =  {0}", key);
 
-                cc.queueOperation(decrypted_message,key, "/test.txt");
+               while (!cc.queueOperation(decrypted_message, key, "/test.txt", 0)) { }
 
-                if (level < maxlength) keyEnum(prefix + c, level, maxlength, msg);
+               if (level < maxlength) keyEnum(prefix + c, level, maxlength, msg ,f);
             }
         }
     }

@@ -7,12 +7,6 @@
       <xsd:import schemaLocation="http://localhost:1919/BrutusControl.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Threading" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IBrutusControl_BrutusInstance_InputMessage">
-    <wsdl:part name="parameters" element="tns:BrutusInstance" />
-  </wsdl:message>
-  <wsdl:message name="IBrutusControl_BrutusInstance_OutputMessage">
-    <wsdl:part name="parameters" element="tns:BrutusInstanceResponse" />
-  </wsdl:message>
   <wsdl:message name="IBrutusControl_startBrutus_InputMessage">
     <wsdl:part name="parameters" element="tns:startBrutus" />
   </wsdl:message>
@@ -32,10 +26,6 @@
     <wsdl:part name="parameters" element="tns:killBrutusResponse" />
   </wsdl:message>
   <wsdl:portType name="IBrutusControl">
-    <wsdl:operation name="BrutusInstance">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBrutusControl/BrutusInstance" message="tns:IBrutusControl_BrutusInstance_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBrutusControl/BrutusInstanceResponse" message="tns:IBrutusControl_BrutusInstance_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="startBrutus">
       <wsdl:input wsaw:Action="http://tempuri.org/IBrutusControl/startBrutus" message="tns:IBrutusControl_startBrutus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBrutusControl/startBrutusResponse" message="tns:IBrutusControl_startBrutus_OutputMessage" />
@@ -51,15 +41,6 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBrutusControl" type="tns:IBrutusControl">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="BrutusInstance">
-      <soap:operation soapAction="http://tempuri.org/IBrutusControl/BrutusInstance" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="startBrutus">
       <soap:operation soapAction="http://tempuri.org/IBrutusControl/startBrutus" style="document" />
       <wsdl:input>

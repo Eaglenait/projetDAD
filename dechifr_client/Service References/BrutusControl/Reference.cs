@@ -15,30 +15,23 @@ namespace dechifr_client.BrutusControl {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BrutusControl.IBrutusControl")]
     public interface IBrutusControl {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/BrutusInstance", ReplyAction="http://tempuri.org/IBrutusControl/BrutusInstanceResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Threading.CancellationToken))]
-        void BrutusInstance(object instance);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/BrutusInstance", ReplyAction="http://tempuri.org/IBrutusControl/BrutusInstanceResponse")]
-        System.Threading.Tasks.Task BrutusInstanceAsync(object instance);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/startBrutus", ReplyAction="http://tempuri.org/IBrutusControl/startBrutusResponse")]
+        void startBrutus(string encrypted_Message, string filename, System.Threading.CancellationTokenSource t_cancel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/startBrutus", ReplyAction="http://tempuri.org/IBrutusControl/startBrutusResponse")]
-        void startBrutus(string encrypted_Message, System.Threading.CancellationToken t_cancel);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/startBrutus", ReplyAction="http://tempuri.org/IBrutusControl/startBrutusResponse")]
-        System.Threading.Tasks.Task startBrutusAsync(string encrypted_Message, System.Threading.CancellationToken t_cancel);
+        System.Threading.Tasks.Task startBrutusAsync(string encrypted_Message, string filename, System.Threading.CancellationTokenSource t_cancel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/stopBrutus", ReplyAction="http://tempuri.org/IBrutusControl/stopBrutusResponse")]
-        void stopBrutus(int task_Id, string final_message, string key, string email, double fiability);
+        bool stopBrutus(int task_ID, string fileName, string final_message, string key, string email, double fiability);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/stopBrutus", ReplyAction="http://tempuri.org/IBrutusControl/stopBrutusResponse")]
-        System.Threading.Tasks.Task stopBrutusAsync(int task_Id, string final_message, string key, string email, double fiability);
+        System.Threading.Tasks.Task<bool> stopBrutusAsync(int task_ID, string fileName, string final_message, string key, string email, double fiability);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/killBrutus", ReplyAction="http://tempuri.org/IBrutusControl/killBrutusResponse")]
-        void killBrutus(int id, System.Threading.CancellationToken t_cancel);
+        void killBrutus();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/killBrutus", ReplyAction="http://tempuri.org/IBrutusControl/killBrutusResponse")]
-        System.Threading.Tasks.Task killBrutusAsync(int id, System.Threading.CancellationToken t_cancel);
+        System.Threading.Tasks.Task killBrutusAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -68,36 +61,28 @@ namespace dechifr_client.BrutusControl {
                 base(binding, remoteAddress) {
         }
         
-        public void BrutusInstance(object instance) {
-            base.Channel.BrutusInstance(instance);
+        public void startBrutus(string encrypted_Message, string filename, System.Threading.CancellationTokenSource t_cancel) {
+            base.Channel.startBrutus(encrypted_Message, filename, t_cancel);
         }
         
-        public System.Threading.Tasks.Task BrutusInstanceAsync(object instance) {
-            return base.Channel.BrutusInstanceAsync(instance);
+        public System.Threading.Tasks.Task startBrutusAsync(string encrypted_Message, string filename, System.Threading.CancellationTokenSource t_cancel) {
+            return base.Channel.startBrutusAsync(encrypted_Message, filename, t_cancel);
         }
         
-        public void startBrutus(string encrypted_Message, System.Threading.CancellationToken t_cancel) {
-            base.Channel.startBrutus(encrypted_Message, t_cancel);
+        public bool stopBrutus(int task_ID, string fileName, string final_message, string key, string email, double fiability) {
+            return base.Channel.stopBrutus(task_ID, fileName, final_message, key, email, fiability);
         }
         
-        public System.Threading.Tasks.Task startBrutusAsync(string encrypted_Message, System.Threading.CancellationToken t_cancel) {
-            return base.Channel.startBrutusAsync(encrypted_Message, t_cancel);
+        public System.Threading.Tasks.Task<bool> stopBrutusAsync(int task_ID, string fileName, string final_message, string key, string email, double fiability) {
+            return base.Channel.stopBrutusAsync(task_ID, fileName, final_message, key, email, fiability);
         }
         
-        public void stopBrutus(int task_Id, string final_message, string key, string email, double fiability) {
-            base.Channel.stopBrutus(task_Id, final_message, key, email, fiability);
+        public void killBrutus() {
+            base.Channel.killBrutus();
         }
         
-        public System.Threading.Tasks.Task stopBrutusAsync(int task_Id, string final_message, string key, string email, double fiability) {
-            return base.Channel.stopBrutusAsync(task_Id, final_message, key, email, fiability);
-        }
-        
-        public void killBrutus(int id, System.Threading.CancellationToken t_cancel) {
-            base.Channel.killBrutus(id, t_cancel);
-        }
-        
-        public System.Threading.Tasks.Task killBrutusAsync(int id, System.Threading.CancellationToken t_cancel) {
-            return base.Channel.killBrutusAsync(id, t_cancel);
+        public System.Threading.Tasks.Task killBrutusAsync() {
+            return base.Channel.killBrutusAsync();
         }
     }
 }

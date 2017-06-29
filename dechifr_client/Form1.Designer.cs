@@ -15,6 +15,8 @@
         {
             if (disposing && (components != null))
             {
+                bcc.Close();
+                t.Dispose();
                 components.Dispose();
             }
             base.Dispose(disposing);
