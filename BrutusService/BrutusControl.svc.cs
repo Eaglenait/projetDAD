@@ -17,16 +17,17 @@ namespace BrutusService
             Bruteforce.Instance.killAll();
         }
 
-
         public bool stopBrutus(int task_ID, string fileName, string final_message, string key, string email, double fiability)
         {
-            Console.WriteLine("TEST");
-            if(Bruteforce.Instance.StopAndFinalize(task_ID,fileName, final_message, key, email, fiability))
+            try
             {
-                //mailGen mg = new mailGen(final_message, key, fiability, email) ;
-                return true;
-            }
-            return false;
+                if (Bruteforce.Instance.StopAndFinalize(task_ID, fileName, final_message, key, email, fiability))
+                {
+                    mailGen mg = new mailGen(final_message, key, fiability, email);
+                    return true;
+                }
+                return false;
+            }catch(Exception e) { Console.WriteLine(e.Message); return false; }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using BrutusService.JavaEndpoint;
-using System;
-using System.Text;
 using System.Threading;
+using System.Text;
+using System;
 
 namespace BrutusService
 {
@@ -10,7 +10,7 @@ namespace BrutusService
         //list of possible chars
         private static readonly string[] validChars = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
-        static ProjectEndpointClient cc = new ProjectEndpointClient("projectEndpointhttp");
+        static ProjectEndpointClient cc = new ProjectEndpointClient("projectEndpoint");
 
         public Keygen() { }
 
@@ -23,8 +23,6 @@ namespace BrutusService
                 output[i] = (char)(input[i] ^ key[i % key.Length]);
             }
             byte[] bytes = Encoding.Default.GetBytes(output);
-
-
             
             return Encoding.UTF8.GetString(bytes);
         }

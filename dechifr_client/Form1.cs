@@ -10,26 +10,26 @@ namespace dechifr_client
 {
     public partial class Form1 : Form
     {
-        readonly BrutusControlClient bcc = new BrutusControlClient("projectEndpoint2");
-        
+        private readonly BrutusControlClient bcc = new BrutusControlClient("projectEndpoint2");
+
         //index that is used to create the dynamic controls
-        static int dyn_index = 1;
+        private static int dyn_index = 1;
 
         //selected file stream
-        string filepath;
+        private string filepath;
 
         //for login button activation
-        bool TB_username = false;
-        bool TB_password = false;
-        bool TB_appToken = false;
+        private bool TB_username = false;
+        private bool TB_password = false;
+        private bool TB_appToken = false;
 
-        bool TB_fileselected = false;
-        bool TB_connectionTokenEntered = false;
+        private bool TB_fileselected = false;
+        private bool TB_connectionTokenEntered = false;
 
-        Authenticate t = new Authenticate();
+        private Authenticate t = new Authenticate();
 
         //const string apptoken = "F5BwBkWzvL1hGT8zHk8bPlw975VHMz";
-        const string apptoken = "A";
+        private const string apptoken = "A";
 
         public Form1()
         {

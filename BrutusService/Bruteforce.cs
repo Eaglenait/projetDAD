@@ -11,10 +11,10 @@ namespace BrutusService
         private static readonly Lazy<Bruteforce> lazy = new Lazy<Bruteforce>(() => new Bruteforce());
         public static Bruteforce Instance { get { return lazy.Value; } }
 
-        List<Task> tasksList = new List<Task>();
-        TupleList<string, CancellationTokenSource> taskListCancellationToken = new TupleList<string, CancellationTokenSource> { };
+        private List<Task> tasksList = new List<Task>();
+        private TupleList<string, CancellationTokenSource> taskListCancellationToken = new TupleList<string, CancellationTokenSource> { };
 
-        ProjectEndpointClient service = new ProjectEndpointClient("projectEndpointhtt^p");
+        private ProjectEndpointClient service = new ProjectEndpointClient("projectEndpoint");
 
         //To java service end point
 
@@ -22,7 +22,7 @@ namespace BrutusService
         /// Create Bruteforce task
         /// </summary>
         /// <param name="file"></param>
-        /// <param name="c"></param>
+        /// <param name="t_cancel"></param>
         public void addTask(string file, string filename, CancellationTokenSource t_cancel)
         {
             //actual bruteforce loop
@@ -32,14 +32,14 @@ namespace BrutusService
                 Keygen k = new Keygen();
 
                 //only stop when asked to stop
-                Console.WriteLine("Creating bruteforce thread");
+                //Console.WriteLine("Creating bruteforce thread");
                 
                 //generate key in incremented size lenght
                 k.keyEnum("", 1, 3, file, t_cancel);
 
                 Console.WriteLine("finished");
 
-            }, t_cancel.Token, TaskCreationOptions.AttachedToParent, TaskScheduler.Default));
+            }, t_cancel.Token, TaskCreationOptions.DenyChildAttach, TaskScheduler.Default));
         }
 
         public void killAll()
@@ -52,8 +52,10 @@ namespace BrutusService
 
         public bool StopAndFinalize(int task_ID, string fileName, string final_message, string key, string email, double fiability)
         {
-            if (taskListCancellationToken[task_ID].Item2 != null) { 
+            if (taskListCancellationToken[task_ID].Item2 != null) {
                 taskListCancellationToken[task_ID].Item2.Cancel();
+                taskListCancellationToken.RemoveAt(task_ID);
+                tasksList[task_ID].Dispose();
                 return true;
             }
             return false;
@@ -72,6 +74,7 @@ namespace BrutusService
     /// <typeparam name="T2"></typeparam>
     public class TupleList<T1, T2> : List<Tuple<T1, T2>>
     {
+
         public void Add(T1 item, T2 item2)
         {
             Add(new Tuple<T1, T2>(item, item2));
