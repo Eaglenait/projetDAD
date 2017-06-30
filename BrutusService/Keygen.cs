@@ -31,7 +31,7 @@ namespace BrutusService
         /// <summary>
         /// Goes through every key in a range
         /// </summary>
-        /// <param name="prefix">if you have the start of the key set it here</param>
+        /// <param name="prefix">If you have the start of the key set it here</param>
         /// <param name="level">key length to begin with ex : 2 would start with key "aa"</param>
         /// <param name="maxlength">maximum key length</param>
         public void keyEnum(string prefix, int level, int maxlength, string msg, CancellationTokenSource f, string filename)
