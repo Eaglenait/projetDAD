@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Text;
 using System;
+using System.IO;
 
 namespace BrutusService
 {
@@ -41,6 +42,7 @@ namespace BrutusService
         /// <param name="t_cancel"></param>
         public void addTask(string file, string filename, string taskID, CancellationTokenSource t_cancel)
         {
+            string msg = File.ReadAllText(file);
             CancellationTokenSource cts = new CancellationTokenSource();
             cont_taskList.Add(cts);
 
@@ -48,37 +50,12 @@ namespace BrutusService
             taskList.Add(Task.Run(() =>
             {
 
-                /*
-                string prefix = "";
-                int level = 1;
-                int maxlength = 6;
-
-                while (cont)
-                {
-                    if (!cont) { return; }
-
-                    level += 1;
-                    foreach(string c in validChars)
-                    {
-                        if (!cont) { return; }
-                        string key = prefix + c;
-                        char[] n_key = key.ToCharArray();
-
-                        string decrypted_message = encryptDecrypt(file, n_key);
-
-                        //ensure message is sent
-                        while (!service.queueOperation(decrypted_message, key, filename, taskID)) { }
-                        
-                    }
-                }
-                */
-
                 Keygen k = new Keygen();
                 if (cts.IsCancellationRequested) { return; }
                 //generate key in incremented size lenght
                 for(int i = 1; i < 6; ++i)
                 {
-                    k.keyEnum("", 1, i, file, cts,filename);
+                    k.keyEnum("", 1, i, msg, cts,filename);
                 }
 
             }));

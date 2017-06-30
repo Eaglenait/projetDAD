@@ -15,6 +15,12 @@ namespace BrutusService
 
         public Keygen() { }
 
+        /// <summary>
+        /// Method used to encrypt or decrypt an input string with a key using a XOR
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         private static string encryptDecrypt(string input, char[] key)
         {
             char[] output = new char[input.Length];
@@ -48,6 +54,7 @@ namespace BrutusService
 
                 //Console.WriteLine("decrypted_message =  {0}", decrypted_message);
                 //Console.WriteLine("key =  {0}", key);
+
 
                 cc.queueOperation(decrypted_message, key, filename, "0");
 

@@ -18,4 +18,3 @@ C:\Users\Thor\Documents\Visual Studio 2015\Projects\dechifr\BrutusService\bin\Mi
 C:\Users\Thor\Documents\Visual Studio 2015\Projects\dechifr\BrutusService\bin\Microsoft.ApplicationInsights.xml
 C:\Users\Thor\Documents\Visual Studio 2015\Projects\dechifr\BrutusService\obj\Debug\BrutusService.dll
 C:\Users\Thor\Documents\Visual Studio 2015\Projects\dechifr\BrutusService\obj\Debug\BrutusService.pdb
-C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\BrutusService\obj\Debug\BrutusService.csprojResolveAssemblyReference.cache

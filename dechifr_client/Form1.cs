@@ -93,7 +93,6 @@ namespace dechifr_client
                         status_label.Text = "Connection failed";
                     } else
                     {
-
                         //if the connectionToken is valid we let the user know by displaying it and by putting it in the token textbox
                         Console.WriteLine("Connection successfull");
                         status_label.Text = "connectionToken : " + connectionToken;
@@ -120,9 +119,9 @@ namespace dechifr_client
         {
             Console.WriteLine("file sended");
 
-            string msg = File.ReadAllText(filepath);
+            //string msg = File.ReadAllText(filepath);
             
-            Console.WriteLine("File is {0}", msg);
+           // Console.WriteLine("File is {0}", msg);
 
             //create new form module
             BfControl bf = new BfControl();
@@ -131,7 +130,7 @@ namespace dechifr_client
             int taskIndex = dyn_index - 1;
             string s_taskIndex = taskIndex.ToString();
             
-            bcc.startBrutus(msg, selected_filepath, s_taskIndex, cts);
+            bcc.startBrutus(filepath, selected_filepath, s_taskIndex, cts);
 
             ++dyn_index;
             bf.setLabel(label_filePath.Text);

@@ -33,14 +33,20 @@ namespace dechifr_client
             msqlCommand.Dispose();
         }
 
-        /*
-         Check if user is in db with password
-         */
+        /// <summary>
+        /// Check if user is in database
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool checkUser(string username,string password)
         {
             msqlCommand.CommandText = "SELECT * FROM `users`;";
             try
             {
+                //anti injection
+                if (username.Contains(';') || password.Contains(';')) { return false; }
+
                 msqlConnection.Open();
                 MySqlDataReader msqlReader = msqlCommand.ExecuteReader();
                 while (msqlReader.Read())
@@ -68,12 +74,19 @@ namespace dechifr_client
             return false;
         }
 
-        /*
-         Connect the user and returns a connection token
-         adds this token to the session table with the default validity time
-         */
+         /// <summary>
+         /// Connect the user and returns a connectin token
+         /// Adds this token to the session table with the default validity time
+         /// </summary>
+         /// <param name="username"></param>
+         /// <param name="password"></param>
+         /// <param name="appToken"></param>
+         /// <returns></returns>
         public string connect(string username, string password, string appToken)
         {
+            //anti injection
+            if (username.Contains(';') || password.Contains(';')) { return "invalid"; }
+
             if (checkUser(username, password))
             {
                 //generate token
@@ -158,11 +171,17 @@ namespace dechifr_client
             }
         }
 
-        /*
-         check if users has a valid connection token
-         */
+         /// <summary>
+         /// Check if users has a valid connection token
+         /// </summary>
+         /// <param name="username"></param>
+         /// <param name="token"></param>
+         /// <returns></returns>
         public bool checkUserToken(string username, string token)
         {
+            //anti injection
+            if (username.Contains(';') || token.Contains(';')) { return false; }
+
             msqlCommand.CommandText = "SELECT * FROM `session`;";
             try
             {
@@ -198,18 +217,22 @@ namespace dechifr_client
             return false;
         }
 
-        /*
-        Method to convert the input string into a hased byte array
-        */
+        /// <summary>
+        /// Method to convert the input string into a hased byte array
+        /// </summary>
+        /// <param name="inputString"></param>
+        /// <returns></returns>
         public static byte[] GetHash(string inputString)
         {
             HashAlgorithm algorithm = MD5.Create();  //or use SHA256.Create();
             return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
         }
 
-        /*
-        Convert hash array into hased string
-             */
+        /// <summary>
+        /// Convert hash array into hased string
+        /// </summary>
+        /// <param name="inputString"></param>
+        /// <returns></returns>
         public static string GetHashString(string inputString)
         {
             StringBuilder sb = new StringBuilder();

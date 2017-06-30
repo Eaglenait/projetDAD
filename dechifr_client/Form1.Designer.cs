@@ -30,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.fileselect_btn = new System.Windows.Forms.Button();
             this.username_label = new System.Windows.Forms.Label();
             this.password_label = new System.Windows.Forms.Label();
@@ -47,13 +48,14 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.mainFloatPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SuspendLayout();
             // 
             // fileselect_btn
             // 
             this.fileselect_btn.Location = new System.Drawing.Point(15, 179);
             this.fileselect_btn.Name = "fileselect_btn";
-            this.fileselect_btn.Size = new System.Drawing.Size(72, 21);
+            this.fileselect_btn.Size = new System.Drawing.Size(104, 21);
             this.fileselect_btn.TabIndex = 5;
             this.fileselect_btn.Text = "Select File";
             this.fileselect_btn.UseVisualStyleBackColor = true;
@@ -124,17 +126,17 @@
             // status_label
             // 
             this.status_label.AutoSize = true;
-            this.status_label.Location = new System.Drawing.Point(290, 13);
+            this.status_label.Location = new System.Drawing.Point(258, 13);
             this.status_label.Name = "status_label";
-            this.status_label.Size = new System.Drawing.Size(95, 13);
+            this.status_label.Size = new System.Drawing.Size(68, 13);
             this.status_label.TabIndex = 9;
-            this.status_label.Text = "Please select a file";
+            this.status_label.Text = "Please Login";
             // 
             // textbox_connectionToken
             // 
             this.textbox_connectionToken.Location = new System.Drawing.Point(15, 153);
             this.textbox_connectionToken.Name = "textbox_connectionToken";
-            this.textbox_connectionToken.Size = new System.Drawing.Size(134, 20);
+            this.textbox_connectionToken.Size = new System.Drawing.Size(199, 20);
             this.textbox_connectionToken.TabIndex = 4;
             // 
             // label_connectionToken
@@ -149,7 +151,7 @@
             // label_filePath
             // 
             this.label_filePath.AutoSize = true;
-            this.label_filePath.Location = new System.Drawing.Point(93, 183);
+            this.label_filePath.Location = new System.Drawing.Point(258, 48);
             this.label_filePath.Name = "label_filePath";
             this.label_filePath.Size = new System.Drawing.Size(85, 13);
             this.label_filePath.TabIndex = 7;
@@ -158,9 +160,9 @@
             // btn_sendFile
             // 
             this.btn_sendFile.Enabled = false;
-            this.btn_sendFile.Location = new System.Drawing.Point(15, 219);
+            this.btn_sendFile.Location = new System.Drawing.Point(125, 179);
             this.btn_sendFile.Name = "btn_sendFile";
-            this.btn_sendFile.Size = new System.Drawing.Size(72, 21);
+            this.btn_sendFile.Size = new System.Drawing.Size(89, 21);
             this.btn_sendFile.TabIndex = 6;
             this.btn_sendFile.Text = "Send File";
             this.btn_sendFile.UseVisualStyleBackColor = true;
@@ -189,19 +191,25 @@
             // 
             // mainFloatPanel
             // 
+            this.mainFloatPanel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.mainFloatPanel.AutoScroll = true;
             this.mainFloatPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mainFloatPanel.Location = new System.Drawing.Point(263, 35);
+            this.mainFloatPanel.Location = new System.Drawing.Point(261, 77);
             this.mainFloatPanel.Name = "mainFloatPanel";
-            this.mainFloatPanel.Size = new System.Drawing.Size(469, 432);
+            this.mainFloatPanel.Size = new System.Drawing.Size(469, 205);
             this.mainFloatPanel.TabIndex = 13;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(774, 479);
+            this.ClientSize = new System.Drawing.Size(742, 317);
             this.Controls.Add(this.mainFloatPanel);
             this.Controls.Add(this.btn_sendFile);
             this.Controls.Add(this.label_filePath);
@@ -241,6 +249,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.FlowLayoutPanel mainFloatPanel;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
 

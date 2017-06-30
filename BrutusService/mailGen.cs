@@ -41,11 +41,16 @@ namespace BrutusService
         public mailGen(string msg, string key, double fiability, string email)
         {
             fiability *= 100;
-            fiability = Math.Truncate(100 * fiability) / fiability;
             makePdf(msg, key, fiability, virginie);
         }
 
-        //Créer le PDF
+        /// <summary>
+        /// Makes the pdf 
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="cle"></param>
+        /// <param name="taux"></param>
+        /// <param name="destinataire"></param>
         static void makePdf(string msg, string cle, double taux, string destinataire)
         {
             Console.WriteLine("Making PDF");
@@ -104,7 +109,10 @@ namespace BrutusService
             sendMail(destinataire);
         }
 
-        //Envoi l'email
+        /// <summary>
+        /// Sends the mail
+        /// </summary>
+        /// <param name="destinataire"></param>
         static void sendMail(string destinataire)
         {
             Console.WriteLine("Sending mail");
