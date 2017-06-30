@@ -184,8 +184,8 @@
     <None Include="Service References\VerificationService\dechifr_client.VerificationService.queueOperationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\VerificationService\projectService.wsdl" />
-    <None Include="Service References\VerificationService\WebServiceBean.xsd">
+    <None Include="Service References\VerificationService\projectService1.wsdl" />
+    <None Include="Service References\VerificationService\WebServiceBean1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

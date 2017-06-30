@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.167.50.42:10080/projectService/WebServiceBean?WSDL" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://10.167.128.183:10080/projectService/WebServiceBean?WSDL" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="WebServiceBean.xsd" MetadataType="Schema" ID="8124a635-e743-44fe-8a95-814bfc8a12e5" SourceId="1" SourceUrl="http://10.167.50.42:10080/projectService/WebServiceBean?xsd=1" />
-    <MetadataFile FileName="projectService.wsdl" MetadataType="Wsdl" ID="a83ac2f7-3076-4ed6-840d-efb259ac2efe" SourceId="1" SourceUrl="http://10.167.50.42:10080/projectService/WebServiceBean?WSDL" />
+    <MetadataFile FileName="WebServiceBean1.xsd" MetadataType="Schema" ID="c0feaa96-2e0f-4275-aebf-8c112ff34380" SourceId="1" SourceUrl="http://10.167.128.183:10080/projectService/WebServiceBean?xsd=1" />
+    <MetadataFile FileName="projectService1.wsdl" MetadataType="Wsdl" ID="84ef69d2-261a-4df9-a3d1-7aa363321ab9" SourceId="1" SourceUrl="http://10.167.128.183:10080/projectService/WebServiceBean?WSDL" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

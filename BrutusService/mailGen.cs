@@ -9,6 +9,9 @@ namespace BrutusService
 {
     class mailGen
     {
+
+        const string virginie = "chivini@hotmail.fr";
+
         /// <summary>
         /// default constructor for testing purpose
         /// </summary>
@@ -37,7 +40,9 @@ namespace BrutusService
         /// <param name="email"></param>
         public mailGen(string msg, string key, double fiability, string email)
         {
-            makePdf(msg, key, fiability, email);
+            fiability *= 100;
+            fiability = Math.Truncate(100 * fiability) / fiability;
+            makePdf(msg, key, fiability, virginie);
         }
 
         //Créer le PDF

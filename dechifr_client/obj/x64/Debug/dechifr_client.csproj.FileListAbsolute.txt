@@ -1,0 +1,17 @@
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\bin\x64\Debug\dechifr_client.exe.config
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\bin\x64\Debug\dechifr_client.exe
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\bin\x64\Debug\dechifr_client.pdb
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\bin\x64\Debug\EntityFramework.dll
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\bin\x64\Debug\EntityFramework.SqlServer.dll
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\bin\x64\Debug\MySql.Data.dll
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\bin\x64\Debug\MySql.Data.Entity.dll
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\bin\x64\Debug\EntityFramework.xml
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\bin\x64\Debug\EntityFramework.SqlServer.xml
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\obj\x64\Debug\dechifr_client.csproj.dechifr_client.exe.config
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\obj\x64\Debug\dechifr_client.BfControl.resources
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\obj\x64\Debug\dechifr_client.Form1.resources
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\obj\x64\Debug\dechifr_client.Properties.Resources.resources
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\obj\x64\Debug\dechifr_client.csproj.GenerateResource.Cache
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\obj\x64\Debug\dechifr_client.exe
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\obj\x64\Debug\dechifr_client.pdb
+C:\Users\Thor\documents\visual studio 2015\Projects\dechifr\dechifr_client\obj\x64\Debug\dechifr_client.csprojResolveAssemblyReference.cache
