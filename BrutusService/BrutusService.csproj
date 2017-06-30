@@ -101,6 +101,7 @@
     </Content>
     <None Include="Service References\JavaEndpoint\configuration91.svcinfo" />
     <None Include="Service References\JavaEndpoint\configuration.svcinfo" />
+    <None Include="Service References\JavaEndpoint\projectService1.wsdl" />
     <None Include="Service References\JavaEndpoint\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -130,8 +131,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Service References\JavaEndpoint\projectService.wsdl" />
-    <None Include="Service References\JavaEndpoint\WebServiceBean.xsd">
+    <None Include="Service References\JavaEndpoint\WebServiceBean1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web.Debug.config">

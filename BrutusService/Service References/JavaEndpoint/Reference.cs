@@ -55,13 +55,13 @@ namespace BrutusService.JavaEndpoint {
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
         public string filename;
         
-        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
-        public int token;
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string token;
         
         public queueOperationRequestBody() {
         }
         
-        public queueOperationRequestBody(string decryptedMessage, string key, string filename, int token) {
+        public queueOperationRequestBody(string decryptedMessage, string key, string filename, string token) {
             this.decryptedMessage = decryptedMessage;
             this.key = key;
             this.filename = filename;
@@ -135,7 +135,7 @@ namespace BrutusService.JavaEndpoint {
             return base.Channel.queueOperation(request);
         }
         
-        public bool queueOperation(string decryptedMessage, string key, string filename, int token) {
+        public bool queueOperation(string decryptedMessage, string key, string filename, string token) {
             BrutusService.JavaEndpoint.queueOperationRequest inValue = new BrutusService.JavaEndpoint.queueOperationRequest();
             inValue.Body = new BrutusService.JavaEndpoint.queueOperationRequestBody();
             inValue.Body.decryptedMessage = decryptedMessage;
@@ -151,7 +151,7 @@ namespace BrutusService.JavaEndpoint {
             return base.Channel.queueOperationAsync(request);
         }
         
-        public System.Threading.Tasks.Task<BrutusService.JavaEndpoint.queueOperationResponse> queueOperationAsync(string decryptedMessage, string key, string filename, int token) {
+        public System.Threading.Tasks.Task<BrutusService.JavaEndpoint.queueOperationResponse> queueOperationAsync(string decryptedMessage, string key, string filename, string token) {
             BrutusService.JavaEndpoint.queueOperationRequest inValue = new BrutusService.JavaEndpoint.queueOperationRequest();
             inValue.Body = new BrutusService.JavaEndpoint.queueOperationRequestBody();
             inValue.Body.decryptedMessage = decryptedMessage;

@@ -12,11 +12,14 @@ namespace dechifr_client
     {
         private readonly BrutusControlClient bcc = new BrutusControlClient("projectEndpoint2");
 
+        private CancellationTokenSource cts = new CancellationTokenSource();
+
         //index that is used to create the dynamic controls
         private static int dyn_index = 1;
 
         //selected file stream
         private string filepath;
+        private string selected_filepath;
 
         //for login button activation
         private bool TB_username = false;
@@ -51,6 +54,7 @@ namespace dechifr_client
                     {
                         label_filePath.Text = d.FileName;
                         filepath = d.FileName;
+                        selected_filepath = new FileInfo(filepath).Name;
 
                         //activate send file button
                         TB_fileselected = true;
@@ -117,20 +121,23 @@ namespace dechifr_client
             Console.WriteLine("file sended");
 
             string msg = File.ReadAllText(filepath);
+            
             Console.WriteLine("File is {0}", msg);
 
             //create new form module
             BfControl bf = new BfControl();
             bf.Location = new Point(293, (dyn_index * 61));
+
+            int taskIndex = dyn_index - 1;
+            string s_taskIndex = taskIndex.ToString();
             
-            CancellationTokenSource cts = new CancellationTokenSource();
-            bcc.startBrutus(msg, label_filePath.Text, cts);
-            
-            dyn_index++;
+            bcc.startBrutus(msg, selected_filepath, s_taskIndex, cts);
+
+            ++dyn_index;
             bf.setLabel(label_filePath.Text);
             bf.button1.Click += (o, i) => {
-                Console.WriteLine("Thread killed");
-                cts.Cancel();
+
+                bcc.killBrutus(dyn_index - 1);
                 bf.Dispose();
                 --dyn_index;
             };

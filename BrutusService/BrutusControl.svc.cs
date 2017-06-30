@@ -7,14 +7,14 @@ namespace BrutusService
     {
         BrutusControl() { }
 
-        public void startBrutus(string encrypted_Message, string filename, CancellationTokenSource t_cancel)
+        public void startBrutus(string encrypted_Message, string filename, string taskId, CancellationTokenSource t_cancel)
         {
-            Bruteforce.Instance.addTask(encrypted_Message, filename, t_cancel); 
+            Bruteforce.Instance.addTask(encrypted_Message, filename, taskId, t_cancel); 
         }
 
-        public void killBrutus()
+        public void killBrutus(int task_ID)
         {
-            Bruteforce.Instance.killAll();
+            Bruteforce.Instance.killAll(task_ID);
         }
 
         public bool stopBrutus(int task_ID, string fileName, string final_message, string key, string email, double fiability)
@@ -23,7 +23,6 @@ namespace BrutusService
             {
                 if (Bruteforce.Instance.StopAndFinalize(task_ID, fileName, final_message, key, email, fiability))
                 {
-                    mailGen mg = new mailGen(final_message, key, fiability, email);
                     return true;
                 }
                 return false;

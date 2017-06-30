@@ -7,7 +7,7 @@
       <xs:element minOccurs="0" name="decryptedMessage" type="xs:string" />
       <xs:element minOccurs="0" name="key" type="xs:string" />
       <xs:element minOccurs="0" name="filename" type="xs:string" />
-      <xs:element name="token" type="xs:int" />
+      <xs:element minOccurs="0" name="token" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="queueOperationResponse">

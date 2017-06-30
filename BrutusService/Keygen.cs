@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Text;
 using System;
+using System.Threading.Tasks;
 
 namespace BrutusService
 {
@@ -33,12 +34,12 @@ namespace BrutusService
         /// <param name="prefix">if you have the start of the key set it here</param>
         /// <param name="level">key length to begin with ex : 2 would start with key "aa"</param>
         /// <param name="maxlength">maximum key length</param>
-        public void keyEnum(string prefix, int level, int maxlength, string msg, CancellationTokenSource f)
+        public void keyEnum(string prefix, int level, int maxlength, string msg, CancellationTokenSource f, string filename)
         {
             level += 1;
             foreach (string c in validChars)
             {
-                if (f.IsCancellationRequested) { break; }
+                if (f.IsCancellationRequested) { return; }
 
                 string key = prefix + c;
                 char[] n_key = key.ToCharArray();
@@ -48,9 +49,10 @@ namespace BrutusService
                 //Console.WriteLine("decrypted_message =  {0}", decrypted_message);
                 //Console.WriteLine("key =  {0}", key);
 
-               while (!cc.queueOperation(decrypted_message, key, "/test.txt", 0)) { }
+                cc.queueOperation(decrypted_message, key, filename, "0");
 
-               if (level < maxlength) keyEnum(prefix + c, level, maxlength, msg ,f);
+
+               if (level < maxlength) keyEnum(prefix + c, level, maxlength, msg ,f, filename);
             }
         }
     }

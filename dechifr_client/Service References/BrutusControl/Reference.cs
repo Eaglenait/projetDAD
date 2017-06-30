@@ -16,10 +16,10 @@ namespace dechifr_client.BrutusControl {
     public interface IBrutusControl {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/startBrutus", ReplyAction="http://tempuri.org/IBrutusControl/startBrutusResponse")]
-        void startBrutus(string encrypted_Message, string filename, System.Threading.CancellationTokenSource t_cancel);
+        void startBrutus(string encrypted_Message, string filename, string taskId, System.Threading.CancellationTokenSource t_cancel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/startBrutus", ReplyAction="http://tempuri.org/IBrutusControl/startBrutusResponse")]
-        System.Threading.Tasks.Task startBrutusAsync(string encrypted_Message, string filename, System.Threading.CancellationTokenSource t_cancel);
+        System.Threading.Tasks.Task startBrutusAsync(string encrypted_Message, string filename, string taskId, System.Threading.CancellationTokenSource t_cancel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/stopBrutus", ReplyAction="http://tempuri.org/IBrutusControl/stopBrutusResponse")]
         bool stopBrutus(int task_ID, string fileName, string final_message, string key, string email, double fiability);
@@ -28,10 +28,10 @@ namespace dechifr_client.BrutusControl {
         System.Threading.Tasks.Task<bool> stopBrutusAsync(int task_ID, string fileName, string final_message, string key, string email, double fiability);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/killBrutus", ReplyAction="http://tempuri.org/IBrutusControl/killBrutusResponse")]
-        void killBrutus();
+        void killBrutus(int task_ID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBrutusControl/killBrutus", ReplyAction="http://tempuri.org/IBrutusControl/killBrutusResponse")]
-        System.Threading.Tasks.Task killBrutusAsync();
+        System.Threading.Tasks.Task killBrutusAsync(int task_ID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -61,12 +61,12 @@ namespace dechifr_client.BrutusControl {
                 base(binding, remoteAddress) {
         }
         
-        public void startBrutus(string encrypted_Message, string filename, System.Threading.CancellationTokenSource t_cancel) {
-            base.Channel.startBrutus(encrypted_Message, filename, t_cancel);
+        public void startBrutus(string encrypted_Message, string filename, string taskId, System.Threading.CancellationTokenSource t_cancel) {
+            base.Channel.startBrutus(encrypted_Message, filename, taskId, t_cancel);
         }
         
-        public System.Threading.Tasks.Task startBrutusAsync(string encrypted_Message, string filename, System.Threading.CancellationTokenSource t_cancel) {
-            return base.Channel.startBrutusAsync(encrypted_Message, filename, t_cancel);
+        public System.Threading.Tasks.Task startBrutusAsync(string encrypted_Message, string filename, string taskId, System.Threading.CancellationTokenSource t_cancel) {
+            return base.Channel.startBrutusAsync(encrypted_Message, filename, taskId, t_cancel);
         }
         
         public bool stopBrutus(int task_ID, string fileName, string final_message, string key, string email, double fiability) {
@@ -77,12 +77,12 @@ namespace dechifr_client.BrutusControl {
             return base.Channel.stopBrutusAsync(task_ID, fileName, final_message, key, email, fiability);
         }
         
-        public void killBrutus() {
-            base.Channel.killBrutus();
+        public void killBrutus(int task_ID) {
+            base.Channel.killBrutus(task_ID);
         }
         
-        public System.Threading.Tasks.Task killBrutusAsync() {
-            return base.Channel.killBrutusAsync();
+        public System.Threading.Tasks.Task killBrutusAsync(int task_ID) {
+            return base.Channel.killBrutusAsync(task_ID);
         }
     }
 }
